@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Registrarse | Mi Sistema</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+  <header class="border-b border-gray-200 bg-white">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="/" class="text-xl font-bold text-gray-900">
+        Mi Sistema
+      </a>
+
+      <div class="flex items-center gap-3">
+        <a href="/"
+          class="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+          Inicio
+        </a>
+
+        <a href="/login" class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-100">
+          Iniciar sesión
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex flex-1 items-center justify-center px-6 py-12">
+    <section class="w-full max-w-lg">
+      <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+        <div class="text-center">
+          <span class="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+            Crear cuenta
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight">
+            Regístrate
+          </h1>
+
+          <p class="mt-3 text-sm leading-6 text-gray-600">
+            Completa el formulario para crear una nueva cuenta.
+          </p>
+        </div>
+
+        <% if (typeof error !=="undefined" && error) { %>
+          <div class="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+            <%= error %>
+          </div>
+          <% } %>
+
+            <% if (typeof errors !=="undefined" && errors?.length) { %>
+              <div class="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+                <p class="font-semibold">Revisa los siguientes datos:</p>
+
+                <ul class="mt-2 list-inside list-disc space-y-1">
+                  <% errors.forEach((item)=> { %>
+                    <li>
+                      <%= item.msg || item.message || item %>
+                    </li>
+                    <% }) %>
+                </ul>
+              </div>
+              <% } %>
+
+                <form action="/register" method="POST" class="mt-8 space-y-5">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">
+                      Nombre completo
+                    </label>
+
+                    <input id="name" name="name" type="text" autocomplete="name" required
+                      placeholder="Ingresa tu nombre completo"
+                      value="<%= typeof formData !== 'undefined' ? formData.name || '' : '' %>"
+                      class="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+                  </div>
+
+                  <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">
+                      Nombre de usuario
+                    </label>
+
+                    <input id="username" name="username" type="text" autocomplete="username" required minlength="3"
+                      placeholder="Crea un nombre de usuario"
+                      value="<%= typeof formData !== 'undefined' ? formData.username || '' : '' %>"
+                      class="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+                  </div>
+
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">
+                      Correo electrónico
+                    </label>
+
+                    <input id="email" name="email" type="email" autocomplete="email" required
+                      placeholder="correo@ejemplo.com"
+                      value="<%= typeof formData !== 'undefined' ? formData.email || '' : '' %>"
+                      class="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+                  </div>
+
+                  <div class="grid gap-5 sm:grid-cols-2">
+                    <div>
+                      <label for="password" class="block text-sm font-medium text-gray-700">
+                        Contraseña
+                      </label>
+
+                      <div class="relative mt-2">
+                        <input id="password" name="password" type="password" autocomplete="new-password" required
+                          minlength="8" placeholder="Mínimo 8 caracteres"
+                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+
+                        <button type="button" data-toggle-password="password"
+                          class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 hover:text-gray-700"
+                          aria-label="Mostrar contraseña">
+                          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label for="confirmPassword" class="block text-sm font-medium text-gray-700">
+                        Confirmar contraseña
+                      </label>
+
+                      <div class="relative mt-2">
+                        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password"
+                          required minlength="8" placeholder="Repite la contraseña"
+                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+
+                        <button type="button" data-toggle-password="confirmPassword"
+                          class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 hover:text-gray-700"
+                          aria-label="Mostrar contraseña">
+                          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="passwordMessage" class="hidden rounded-lg border px-4 py-3 text-sm"></div>
+
+                  <div class="flex items-start">
+                    <input id="terms" name="terms" type="checkbox" required
+                      class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+
+                    <label for="terms" class="ml-3 text-sm leading-6 text-gray-600">
+                      Acepto los
+                      <a href="/terms" class="font-medium text-blue-600 hover:text-blue-700">
+                        términos y condiciones
+                      </a>
+                      y el
+                      <a href="/privacy" class="font-medium text-blue-600 hover:text-blue-700">
+                        aviso de privacidad
+                      </a>.
+                    </label>
+                  </div>
+
+                  <button id="registerButton" type="submit"
+                    class="w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-400">
+                    Crear cuenta
+                  </button>
+                </form>
+
+                <div class="mt-8 border-t border-gray-200 pt-6 text-center">
+                  <p class="text-sm text-gray-600">
+                    ¿Ya tienes una cuenta?
+
+                    <a href="/login" class="font-semibold text-blue-600 hover:text-blue-700">
+                      Inicia sesión
+                    </a>
+                  </p>
+                </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-6 text-center text-sm text-gray-500">
+      &copy; <%= new Date().getFullYear() %> Mi Sistema. Todos los derechos
+        reservados.
+    </div>
+  </footer>
+
+  <script>
+    const toggleButtons = document.querySelectorAll(
+      "[data-toggle-password]"
+    );
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const inputId = button.dataset.togglePassword;
+        const input = document.getElementById(inputId);
+        const isPassword = input.type === "password";
+
+        input.type = isPassword ? "text" : "password";
+
+        button.setAttribute(
+          "aria-label",
+          isPassword ? "Ocultar contraseña" : "Mostrar contraseña"
+        );
+      });
+    });
+
+    const registerForm = document.querySelector("form");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const passwordMessage = document.getElementById("passwordMessage");
+
+    registerForm.addEventListener("submit", (event) => {
+      passwordMessage.classList.add("hidden");
+
+      if (password.value !== confirmPassword.value) {
+        event.preventDefault();
+
+        passwordMessage.textContent = "Las contraseñas no coinciden.";
+
+        passwordMessage.className =
+          "rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700";
+
+        confirmPassword.focus();
+      }
+    });
+  </script>
+</body>
+
+</html>

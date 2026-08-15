@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Verificar código | Mi Sistema
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+
+  <main class="flex flex-1 items-center justify-center px-6 py-12">
+
+    <section class="w-full max-w-md">
+
+      <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+
+        <div class="text-center">
+
+          <span class="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+            Verificación
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight">
+            Ingresa el código
+          </h1>
+
+          <p class="mt-3 text-sm leading-6 text-gray-600">
+            Enviamos un código de 6 dígitos
+            a tu correo electrónico.
+          </p>
+
+        </div>
+
+
+        <% if (error) { %>
+
+        <div class="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <%= error %>
+        </div>
+
+        <% } %>
+
+
+        <form action="/verify-code" method="POST" class="mt-8 space-y-5">
+
+          <div>
+
+            <label for="codigo" class="block text-center text-sm font-medium text-gray-700">
+              Código de verificación
+            </label>
+
+            <input id="codigo" name="codigo" type="text" inputmode="numeric" maxlength="6" minlength="6" required placeholder="000000" class="mt-3 w-full rounded-lg border border-gray-300 bg-white px-4 py-4 text-center text-3xl font-bold tracking-[0.5em] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+
+          </div>
+
+
+          <button type="submit" class="w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
+            Verificar código
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>

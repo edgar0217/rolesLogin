@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Superadministrador</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen bg-gray-950 text-white">
+    <header class="border-b border-gray-800">
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+      >
+        <a href="/superadmin" class="text-xl font-bold"> Superadmin </a>
+
+        <div class="flex items-center gap-6">
+          <a
+            href="/admin/usuarios"
+            class="text-sm text-gray-300 hover:text-white"
+          >
+            Usuarios
+          </a>
+
+          <a href="/admin" class="text-sm text-gray-300 hover:text-white">
+            Administración
+          </a>
+
+          <a href="/dashboard" class="text-sm text-gray-300 hover:text-white">
+            Dashboard
+          </a>
+
+          <a
+            href="/logout"
+            class="rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-900"
+          >
+            Salir
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-6 py-12">
+      <p class="text-sm font-medium text-gray-400">Superadministrador</p>
+
+      <h1 class="mt-2 text-4xl font-bold">Bienvenido, <%= user.nombre %></h1>
+
+      <p class="mt-3 text-gray-400">Tienes acceso completo al sistema.</p>
+
+      <section class="mt-10 grid gap-6 md:grid-cols-3">
+        <a
+          href="/admin/usuarios"
+          class="rounded-2xl border border-gray-800 bg-gray-900 p-6 hover:border-gray-600"
+        >
+          <h2 class="text-lg font-semibold">Usuarios</h2>
+
+          <p class="mt-2 text-sm text-gray-400">
+            Administra cuentas, estados y roles.
+          </p>
+        </a>
+
+        <a
+          href="/admin"
+          class="rounded-2xl border border-gray-800 bg-gray-900 p-6 hover:border-gray-600"
+        >
+          <h2 class="text-lg font-semibold">Administración</h2>
+
+          <p class="mt-2 text-sm text-gray-400">
+            Accede al panel administrativo.
+          </p>
+        </a>
+
+        <a
+          href="/dashboard"
+          class="rounded-2xl border border-gray-800 bg-gray-900 p-6 hover:border-gray-600"
+        >
+          <h2 class="text-lg font-semibold">Sistema</h2>
+
+          <p class="mt-2 text-sm text-gray-400">Accede al dashboard general.</p>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>
