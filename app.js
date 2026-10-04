@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import session from "express-session";
 import db from "./config/db.js";
 import noCache from "./middlewares/noCache.js";
-
+import recetaRoutes from "./routes/recetas.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
@@ -43,6 +43,7 @@ app.use(userRoutes);
 app.use(adminRoutes);
 app.use(clienteRoutes);
 app.use(superadminRoutes);
+app.use(recetaRoutes);
 
 app.get("/", (req, res) => {
   return res.render("index", {
